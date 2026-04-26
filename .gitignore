@@ -18,3 +18,13 @@ thumb
 sketch
 
 .idea
+
+# Build output
+dist
+dist-ssr
+build
+
+# Local env files
+.env
+.env.local
+.env.*.local
