@@ -219,6 +219,26 @@
           }
         }
       }
+    },
+    "/api/v1/orders/sse": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Streams order status changes via Server-Sent Events",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderStatusChangedIntegrationEvent"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -332,6 +352,28 @@
           "Cancelled"
         ],
         "type": "string"
+      },
+      "OrderStatusChangedIntegrationEvent": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "oldStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "newStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
       },
       "ProblemDetails": {
         "type": "object",

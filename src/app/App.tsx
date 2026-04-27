@@ -4,6 +4,7 @@ import {Layout} from '../components/layout/Layout'
 import {OrdersListPage} from '../features/orders/pages/OrdersListPage'
 import {OrderDetailsPage} from '../features/orders/pages/OrderDetailsPage'
 import {TrackedOrdersPage} from '../features/orders/pages/TrackedOrdersPage'
+import {OrdersFeatureLayout} from '../features/orders/pages/OrdersFeatureLayout'
 import {GlobalStyle} from '../styles/GlobalStyle'
 import {theme} from '../styles/theme'
 import {NotFoundPage} from './NotFoundPage'
@@ -16,9 +17,11 @@ export function App() {
                 <Routes>
                     <Route element={<Layout/>}>
                         <Route index element={<Navigate to="/orders" replace/>}/>
-                        <Route path="/orders" element={<OrdersListPage/>}/>
-                        <Route path="/orders/:id" element={<OrderDetailsPage/>}/>
-                        <Route path="/tracked" element={<TrackedOrdersPage/>}/>
+                        <Route element={<OrdersFeatureLayout/>}>
+                            <Route path="/orders" element={<OrdersListPage/>}/>
+                            <Route path="/orders/:id" element={<OrderDetailsPage/>}/>
+                            <Route path="/tracked" element={<TrackedOrdersPage/>}/>
+                        </Route>
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Route>
                 </Routes>

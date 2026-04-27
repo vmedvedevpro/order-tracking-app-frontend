@@ -38,6 +38,13 @@ export type OrderPagedResult = {
 
 export type OrderStatus = 'Created' | 'Shipped' | 'Delivered' | 'Cancelled';
 
+export type OrderStatusChangedIntegrationEvent = {
+    orderNumber?: number;
+    oldStatus?: string | null;
+    newStatus?: string | null;
+    occurredAt?: string;
+};
+
 export type ProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -175,3 +182,19 @@ export type GetApiV1OrdersByIdResponses = {
 };
 
 export type GetApiV1OrdersByIdResponse = GetApiV1OrdersByIdResponses[keyof GetApiV1OrdersByIdResponses];
+
+export type GetApiV1OrdersSseData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/orders/sse';
+};
+
+export type GetApiV1OrdersSseResponses = {
+    /**
+     * OK
+     */
+    200: OrderStatusChangedIntegrationEvent;
+};
+
+export type GetApiV1OrdersSseResponse = GetApiV1OrdersSseResponses[keyof GetApiV1OrdersSseResponses];

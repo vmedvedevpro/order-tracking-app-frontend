@@ -8,8 +8,6 @@ export function useOrders(query: OrdersListQuery) {
         queryKey: ordersKeys.list(query),
         queryFn: () => fetchOrders(query),
         placeholderData: (prev) => prev,
-        refetchInterval: 10_000,
-        refetchIntervalInBackground: false,
     })
 
     return {
